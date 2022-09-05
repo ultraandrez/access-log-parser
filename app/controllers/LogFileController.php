@@ -5,7 +5,6 @@ namespace AccessLogAnalyser\App\Controllers;
 use AccessLogAnalyser\App\Base\Controller;
 use AccessLogAnalyser\App\Services\FileService;
 use AccessLogAnalyser\App\Services\LogFileAnalyserService;
-use Exception;
 
 class LogFileController extends Controller
 {
@@ -24,11 +23,11 @@ class LogFileController extends Controller
 	 * @param string $fileName - путь к файлу
 	 * @return array
 	 * 
-	 * @throws Exception
+	 * @throws \Exception
 	 */
 	public function fileStatistic(string $fileName): array {
 		if (!$this->fileService::isFileExists($fileName)) {
-			throw new Exception('Файла не существует');
+			throw new \Exception('Файла не существует');
 		}
 		$descriptor = $this->fileService::openFile($fileName, 'r');
 		$iterator = $this->fileService::readLine($descriptor);
@@ -41,6 +40,7 @@ class LogFileController extends Controller
 			if (count($currentLogEntry) > 0) {
 				$this->logFileService->addView()
 					->addUrl($currentLogEntry['path'])
+					->addTraffic($currentLogEntry['bytes'])
 					->addCrawler($currentLogEntry['agent'])
 					->addStatusCode($currentLogEntry['status']);
 			}

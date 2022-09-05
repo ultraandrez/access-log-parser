@@ -2,8 +2,6 @@
 
 namespace AccessLogAnalyser\App\Services;
 
-use Generator;
-
 class FileService
 {
 	/**
@@ -32,9 +30,9 @@ class FileService
 	 * Вернет генератор для итераций по строкам файла
 	 *
 	 * @param $filePointer - указатель на файл
-	 * @return Generator|null
+	 * @return \Generator|null
 	 */
-	public static function readLine($filePointer): ?Generator {
+	public static function readLine($filePointer): ?\Generator {
 		if (self::isReachedEOF($filePointer)) {
 			return null;
 		}

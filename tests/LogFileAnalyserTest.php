@@ -32,7 +32,7 @@ final class LogFileAnalyserTest extends TestCase
 		$expectation = [
 			"views" => 16,
 			"urls" => 5,
-			"traffic" => 0,
+			"traffic" => 212816,
 			"crawlers" => [
 				"Firefox" => 2,
 				"Internet Explorer" => 2,
